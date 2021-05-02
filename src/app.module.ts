@@ -1,25 +1,28 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Lesson } from './lesson/lesson.entity';
-import { LessonModule } from './lesson/lesson.module';
-import { StudentModule } from './student/student.module';
-import { Student } from './student/student.entity';
+import { Business } from './business/business.entity';
+import { LessonModule } from './business/business.module';
+import { UserModule } from './user/user.module';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       url:
-        'mysql://bb981a084f00ed:165f05be@us-cdbr-east-03.cleardb.com/heroku_ac0db10c3a0e007?reconnect=true',
+        'postgres://rnykrhkwvrpgqq:c00897fc3db4fdace189105ed90f399935dadcd994cf49474e1de693fe498dbb@ec2-35-174-35-242.compute-1.amazonaws.com:5432/df223ov1jdrijm',
       synchronize: true,
-      entities: [Lesson,Student],
+      ssl: {
+        rejectUnauthorized: false
+      },
+      entities: [Business,User],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
     }),
     LessonModule,
-    StudentModule,
+    UserModule,
   ],
 })
 export class AppModule {}

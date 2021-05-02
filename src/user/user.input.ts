@@ -2,15 +2,13 @@ import { Field, InputType } from '@nestjs/graphql';
 import { MinLength } from 'class-validator';
 
 @InputType()
-export class CreateLessonInput {
+export class CreateUserInput {
 
   @MinLength(1)
   @Field()
-  name: string;
+  firstName: string;
 
   @Field()
-  startDate: string;
+  lastName: string;
 
-  @Field()
-  endDate: string;
 }
