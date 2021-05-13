@@ -21,7 +21,7 @@ export class BusinessService {
       url,
       currency,
       timeZone,
-      local
+      local,
     });
     return this.businessRepository.save(business);
   }
